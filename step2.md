@@ -139,7 +139,7 @@ _Кто чего-то какого-то чего-то_
 
 > Visits
 
-> Visit visits of visit
+> Visit visits of a visit
 
 > The visited visit
 
