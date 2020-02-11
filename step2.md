@@ -135,6 +135,18 @@ _Кто чего-то какого-то чего-то_
 
 Потренируемся:
 
+> A visit
+
+> Visits
+
+> Visit visits of visit
+
+> The visited visit
+
+> Visited visits
+
+> A visitly visiting visit
+
 > The visit visit of the visit visit of the visit of a visit
 
 > The visitly visiting visit visit of the visited visit of the visit visiting visit of a visited visit
