@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Test</title>
+	<style>
+		.over {
+  			border: 2px dashed #000;
+		}
+	</style>
+
+	<script type="text/javascript">
+		function dropped(e) {
+			console.log('dropped', e, this);
+			if (e.stopPropagation) {
+    			e.stopPropagation(); // stops the browser from redirecting.
+  			}
+			this.classList.remove('over');
+  			return false;
+		}
+
+		class CPart extends HTMLElement {
+			connectedCallback() {
+				this.draggable = true;
+				// console.log('connected', this);
+			}
+		}
+
+		class CTarget extends HTMLElement {
+			connectedCallback() {
+				// this.draggable = true;
+				this.ondrop = dropped;
+				this.ondragenter = function(e) {
+					this.classList.add('over');
+					console.log('dragenter', e)
+				}
+				this.ondragleave = function(e) {
+					this.classList.remove('over');
+					console.log('dragleave', e)
+				}
+				this.ondragover = function(e) {
+					// console.log('dragover', e)
+					if (e.preventDefault) {
+						e.preventDefault(); // Necessary. Allows us to drop.
+					}
+				}
+				// this.addEventListener('drop', dropped, false)
+				console.log('connected', this, this.ondrop)
+			}
+		}
+
+		var XPart = customElements.define('x-part', CPart);
+		var XTaget = customElements.define('x-tgt', CTarget);
+	</script>
+</head>
+<body>
+
+<div>
+<x-part>Кто</x-part>
+<x-part>Что</x-part>
+<x-part>какой-то</x-part>
+<x-part>как-то</x-part>
+<x-part>делает</x-part>
+<x-part>что-то делающий</x-part>
+<x-part>что-то сделавший</x-part>
+</div>
+
+<div>
+<x-tgt>A visit</x-tgt> <x-tgt>visit</x-tgt> <x-tgt>visits</x-tgt> <x-tgt>a visit</x-tgt>.
+</div>
+
+<div id="targets">
+<!-- <x-tgt>Какой-то</x-tgt> <x-tgt>кто</x-tgt> <x-tgt>делает</x-tgt> <x-tgt>что</x-tgt>. -->
+</div>
+
+<div id="info">Info</div>
+</body>
+</html>
